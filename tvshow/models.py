@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.timezone import now
 
 class Tvshow(models.Model):
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=512)
     launch_date = models.DateField()
     autor = models.CharField(max_length=30)
     genre = models.CharField(max_length=512)
@@ -18,7 +18,8 @@ class Cast(models.Model):
         ('T', 'Tvshow'),
         ('M', 'Movies')
     )
-    cast = models.CharField(max_length=512)
+    cast = models.ForeignKey(Tvshow, on_delete=models.CASCADE)
+    cast_members = models.CharField(max_length=512, default='null')
     related_tvshows = models.CharField(max_length=1, choices=OTHERS, blank=False, null=False, default='T')
 
     def __str__(self):
@@ -26,7 +27,7 @@ class Cast(models.Model):
 
 class Sinopse(models.Model):
     sinopse = models.ForeignKey(Tvshow, on_delete=models.CASCADE)
-    text = models.CharField(max_length=1024, default='no sinopse provided')
+    text = models.CharField(max_length=1024, default='null')
 
 class EpisodeReleaseDate(models.Model):
     TIME_PERIOD = (

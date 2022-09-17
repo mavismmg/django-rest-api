@@ -17,9 +17,19 @@ class CastSerializer(serializers.ModelSerializer):
 class SinopseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sinopse
-        fields = '__all__'
+        fields = ['id', 'text']
 
 class EpisodeSerializer(serializers.ModelSerializer):
     class Meta:
         model = EpisodeReleaseDate
         exclude = []
+
+class ListTvshowEpisodeSerializer(serializers.ModelSerializer):
+    name = serializers.ReadOnlyField(source='tvshow.name')
+    sinopse = serializers.ReadOnlyField(source='sinopse.genre')
+    time_period = serializers.SerializerMethodField()
+    class Meta:
+        model = EpisodeReleaseDate
+        fields = ['name', 'sinopse', 'day', 'daytime', 'time_period']
+    def get_time_period(self, timeperiodObj):
+        return timeperiodObj.get_time_period_display()

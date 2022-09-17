@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from tvshow.views import TvshowViewSet, CastViewSet, EpisodeViewSet, SinopseViewSet
+from tvshow.views import TvshowViewSet, CastViewSet, EpisodeViewSet, SinopseViewSet, ListEpisodeTvshow
 from rest_framework import routers
 
 router = routers.DefaultRouter()
@@ -11,5 +11,6 @@ router.register('sinopse', SinopseViewSet, basename='Sinopse')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(router.urls))
+    path('', include(router.urls)),
+    path('tvshow/<int:pk>/episode/', ListEpisodeTvshow.as_view())
 ]
