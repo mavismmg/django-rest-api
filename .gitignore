@@ -3,3 +3,4 @@ db.sqlite3
 env
 migrations
 secret_key.py
+api_keys.py
