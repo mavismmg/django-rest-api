@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils.timezone import now
-from django import forms
 
 class User(models.Model):
     username = models.CharField(max_length=12, unique=True, null=False)
@@ -37,7 +36,7 @@ class Cast(models.Model):
 
 class Sinopse(models.Model):
     sinopse = models.ForeignKey(Tvshow, on_delete=models.CASCADE)
-    text = models.CharField(max_length=1024, default='null')
+    sinopse_desc = models.CharField(max_length=1024, default='null')
 
 class EpisodeReleaseDate(models.Model):
     TIME_PERIOD = (

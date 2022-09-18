@@ -56,7 +56,7 @@ class CastSerializer(serializers.ModelSerializer):
 class SinopseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sinopse
-        fields = ['id', 'text']
+        fields = ['id', 'sinopse_desc']
 
 class EpisodeSerializer(serializers.ModelSerializer):
     class Meta:
