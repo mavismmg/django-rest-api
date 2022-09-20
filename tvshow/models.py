@@ -10,7 +10,7 @@ class User(models.Model):
         return self.username
 
 class Tvshow(models.Model):
-    name = models.CharField(max_length=512)
+    title = models.CharField(max_length=512)
     autor = models.CharField(max_length=256)
     genre = models.CharField(max_length=1024)
     producer = models.CharField(max_length=512)
@@ -20,7 +20,7 @@ class Tvshow(models.Model):
     full_launch = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name
+        return self.title
 
 class Cast(models.Model):
     OTHERS = (
