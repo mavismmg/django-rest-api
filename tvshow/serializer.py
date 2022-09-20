@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from tvshow.models import Tvshow, Cast, EpisodeReleaseDate, Sinopse, User
+from tvshow.models import User, Tvshow, Cast, Sinopse, EpisodeReleaseDate, Episode, Watching
 from tvshow.validators import *
 
 class UserSerializer(serializers.ModelSerializer):
@@ -40,11 +40,17 @@ class TvshowSerializer(serializers.ModelSerializer):
                 data['autor'] +
                 ' , autor name should have capital letters. Example: John.'
             })
+        if not validate_tvshow_genre(data['genre']):
+            raise serializers.ValidationError({
+                'genre':
+                data['autor'] + 
+                ' , informat is incorrect. Should contain more than one genre.'
+            })
         if not validate_tvshow_language(data['language']):
             raise serializers.ValidationError({
                 'language':
                 data['language'] + 
-                ' , should contain only letters in it.'
+                ' , should contain only letters and one capital letter in it..'
             })
         return data
 
@@ -58,10 +64,20 @@ class SinopseSerializer(serializers.ModelSerializer):
         model = Sinopse
         fields = ['id', 'sinopse_desc']
 
-class EpisodeSerializer(serializers.ModelSerializer):
+class EpisodeReleaseDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = EpisodeReleaseDate
         exclude = []
+
+class EpisodeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Episode
+        fields = '__all__'
+
+class WatchingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Watching
+        fields = '__all__'
 
 class ListTvshowEpisodeSerializer(serializers.ModelSerializer):
     name = serializers.ReadOnlyField(source='tvshow.name')
