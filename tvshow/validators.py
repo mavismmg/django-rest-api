@@ -35,31 +35,31 @@ class EmailCheck():
       return False
 
 class PasswordCheck():
-    @staticmethod
-    def password_len_message():
-      return 'Make sure your password is at least 8 letters.'
+  @staticmethod
+  def password_len_message():
+    return 'Make sure your password is at least 8 letters.'
 
-    @staticmethod
-    def password_contains_number_message():
-      return 'Make sure your password has a number in it.'
+  @staticmethod
+  def password_contains_number_message():
+    return 'Make sure your password has a number in it.'
 
-    @staticmethod
-    def password_contains_capitalletter_message():
-      return 'Make sure your password has a capital letter in it.'
+  @staticmethod
+  def password_contains_capitalletter_message():
+    return 'Make sure your password has a capital letter in it.'
 
-    def validate_password(self, password):
-      p = PasswordCheck()
-      if len(password) < 8:
-        self.message = p.password_len_message()
-        return False
-      elif re.search('[0-9]', password) is None:
-        self.message = p.password_contains_number_message()
-        return False
-      elif re.search('[A-Z]', password) is None:
-        self.message = p.password_contains_capitalletter_message()
-        return False
-      else:
-        return True
+  def validate_password(self, password):
+    p = PasswordCheck()
+    if len(password) < 8:
+      self.message = p.password_len_message()
+      return False
+    elif re.search('[0-9]', password) is None:
+      self.message = p.password_contains_number_message()
+      return False
+    elif re.search('[A-Z]', password) is None:
+      self.message = p.password_contains_capitalletter_message()
+      return False
+    else:
+      return True
 
 """ Tvshow validation. """
 def validate_tvshow_autor(autor):
