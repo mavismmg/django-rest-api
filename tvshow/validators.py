@@ -1,5 +1,3 @@
-from tvshow import api_keys
-
 import re
 import requests
 
@@ -18,7 +16,7 @@ class EmailCheck():
 
   def validate_email(self, email):
     e = EmailCheck()
-    api_key = api_keys.realemail_api_key
+    api_key = '60b92be9-19a0-40aa-b517-0ff1e5061705'
     response = requests.get(
       "https://isitarealemail.com/api/email/validate",
       params={'email': email},
