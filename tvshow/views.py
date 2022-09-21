@@ -49,6 +49,8 @@ class EpisodeViewSet(viewsets.ModelViewSet):
   """Show list of eps"""
   queryset = Episode.objects.all()
   serializer_class = EpisodeSerializer
+  authentication_classes = [BasicAuthentication]
+  permission_classes = [IsAuthenticated]
 
 class WatchingViewSet(viewsets.ModelViewSet):
   """Set watching eps"""
