@@ -58,6 +58,15 @@ class CastSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cast
         fields = '__all__'
+    def validate(self, data):
+        c = CastCheck()
+        if not c.validate_cast_members(data['cast_members']):
+            raise serializers.ValidationError({
+                'cast_members':
+                data['cast_members'] + 
+                ' , should contain more than one member.'
+            })
+        return data
 
 class SinopseSerializer(serializers.ModelSerializer):
     class Meta:

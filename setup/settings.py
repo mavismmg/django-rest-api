@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
+import django_heroku
+
 from setup.secret_key import secret_key
 from setup.database_conn import database_name, user, password, host, port
 
@@ -42,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'tvshow',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +131,5 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
 }
+
+django_heroku.settings(locals())

@@ -1,5 +1,3 @@
-from email.policy import default
-from logging import exception
 import os, django
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'setup.settings')

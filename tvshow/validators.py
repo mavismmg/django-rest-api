@@ -70,3 +70,25 @@ def validate_tvshow_genre(genre):
 
 def validate_tvshow_language(language):
   return re.search(r'[A-Z][a-z]', language)
+
+""" Cast validation. """
+class CastCheck:
+  @staticmethod
+  def validate_cast_members(cast_members):
+    return re.search(r'[a-z],', cast_members)
+
+""" Sinopse validation. """
+class SinopseCheck:
+  pass
+
+""" Episode validation. """
+class EpisodeCheck:
+  pass
+
+""" EpisodeReleaseDate validation. """
+class EpisodeReleaseDateCheck:
+  pass
+
+""" Watching validation. """
+class WatchingCheck():
+  pass

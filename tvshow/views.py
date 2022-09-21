@@ -1,18 +1,26 @@
-from rest_framework import viewsets, generics
+from rest_framework import viewsets, generics, filters
 from tvshow.models import User, Tvshow, Cast, Sinopse, EpisodeReleaseDate, Episode, Watching
 from tvshow.serializer import UserSerializer, TvshowSerializer, CastSerializer, SinopseSerializer, EpisodeReleaseDataSerializer, EpisodeSerializer, WatchingSerializer, ListTvshowEpisodeSerializer, ListTvshowsByCastSerializer
 from rest_framework.authentication import BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
+from django_filters.rest_framework import DjangoFilterBackend
 
 class UserViewSet(viewsets.ModelViewSet):
   """Register user"""
   queryset = User.objects.all()
   serializer_class = UserSerializer
+  filter_backends = [DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter]
+  ordering_fields = ['username']
+  search_fields = ['username', 'email']
 
 class TvshowViewSet(viewsets.ModelViewSet):
   """Show all registred Tvshows"""
   queryset = Tvshow.objects.all()
   serializer_class = TvshowSerializer
+  filter_backends = [DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter]
+  ordering_fields = ['title']
+  search_fields = ['title', 'genre']
+  filterset_fields = ['full_launch']
   authentication_classes = [BasicAuthentication]
   permission_classes = [IsAuthenticated]
 
