@@ -12,6 +12,8 @@ class UserViewSet(viewsets.ModelViewSet):
   filter_backends = [DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter]
   ordering_fields = ['username']
   search_fields = ['username', 'email']
+  authentication_classes = [BasicAuthentication]
+  permission_classes = [IsAuthenticated]
 
 class TvshowViewSet(viewsets.ModelViewSet):
   """Show all registred Tvshows"""
